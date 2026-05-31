@@ -153,19 +153,19 @@ def update_display():
             if i == 0 and active_passenger and active_stage == 'checkin':
                 status_checkin[i].config(text=f"{active_passenger['Nama']} ({stage_remaining:.0f}s)", bg='#f39c12')
             else:
-                status_checkin[i].config(text="Idle", bg='#2ecc71')
+                status_checkin[i].config(text="Tersedia", bg="#00ff6a")
 
         for i in range(NUM_SECURITY_SERVERS):
             if i == 0 and active_passenger and active_stage == 'security':
                 status_security[i].config(text=f"{active_passenger['Nama']} ({stage_remaining:.0f}s)", bg='#f39c12')
             else:
-                status_security[i].config(text="Idle", bg='#2ecc71')
+                status_security[i].config(text="Tersedia", bg="#00ff6a")
 
         for i in range(NUM_BOARDING_SERVERS):
             if i == 0 and active_passenger and active_stage == 'boarding':
                 status_boarding[i].config(text=f"{active_passenger['Nama']} ({stage_remaining:.0f}s)", bg='#f39c12')
             else:
-                status_boarding[i].config(text="Idle", bg='#2ecc71')
+                status_boarding[i].config(text="Tersedia", bg="#00ff6a")
 
     else:
         for i, (score, uid, p) in enumerate(sorted(queue_checkin), 1):
@@ -177,21 +177,21 @@ def update_display():
 
         for i, s in enumerate(servers_checkin):
             if s is None:
-                status_checkin[i].config(text="Idle", bg='#2ecc71')
+                status_checkin[i].config(text="Tersedia", bg="#00ff6a")
             else:
                 p, rem = s
                 status_checkin[i].config(text=f"{p['Nama']} ({rem:.0f}s)", bg='#f39c12')
 
         for i, s in enumerate(servers_security):
             if s is None:
-                status_security[i].config(text="Idle", bg='#2ecc71')
+                status_security[i].config(text="Tersedia", bg="#00ff6a")
             else:
                 p, rem = s
                 status_security[i].config(text=f"{p['Nama']} ({rem:.0f}s)", bg='#f39c12')
 
         for i, s in enumerate(servers_boarding):
             if s is None:
-                status_boarding[i].config(text="Idle", bg='#2ecc71')
+                status_boarding[i].config(text="Tersedia", bg="#00ff6a")
             else:
                 p, rem = s
                 status_boarding[i].config(text=f"{p['Nama']} ({rem:.0f}s)", bg='#f39c12')
@@ -524,117 +524,117 @@ def toggle_mode():
 root = tk.Tk()
 root.title("Simulasi Antrian Bandara - Priority Queue")
 root.geometry("1400x800")
-root.configure(bg='#2c3e50')
+root.configure(bg='#93c9ff')
 
 tk.Label(
     root,
     text="SIMULASI ANTRIAN BANDARA",
     font=("Arial", 14, "bold"),
-    bg='#2c3e50',
-    fg='white'
+    bg="#93c9ff",
+    fg='black'
 ).pack(pady=5)
 
 tk.Label(
     root,
     text="Implementasi Struktur Data Queue pada Sistem Antrian Penumpang Bandara berbasis Multi-Queue",
     font=("Arial", 9),
-    bg='#2c3e50',
-    fg='#bdc3c7'
+    bg="#93c9ff",
+    fg="#000000"
 ).pack()
 
-ctrl_frame = tk.Frame(root, bg='#2c3e50')
+ctrl_frame = tk.Frame(root, bg='#93c9ff')
 ctrl_frame.pack(fill="x", padx=10, pady=5)
 
 btn_start = tk.Button(ctrl_frame, text="Mulai Simulasi", command=start_simulation,
-                      bg='#2ecc71', fg='white', font=("Arial", 10, "bold"))
+                      bg="#3fff8f", fg='black', font=("Arial", 10, "bold"))
 btn_start.pack(side=tk.LEFT, padx=5)
 
 btn_pause = tk.Button(ctrl_frame, text="Jeda", command=pause_simulation,
-                      bg='#f39c12', fg='white', font=("Arial", 10, "bold"), state=tk.DISABLED)
+                      bg='#f39c12', fg='black', font=("Arial", 10, "bold"), state=tk.DISABLED)
 btn_pause.pack(side=tk.LEFT, padx=5)
 
 btn_resume = tk.Button(ctrl_frame, text="Lanjut", command=resume_simulation,
-                       bg='#3498db', fg='white', font=("Arial", 10, "bold"))
+                       bg='#3498db', fg='black', font=("Arial", 10, "bold"))
 btn_resume.pack(side=tk.LEFT, padx=5)
 
 btn_reset = tk.Button(ctrl_frame, text="Reset", command=reset_simulation,
-                      bg='#e74c3c', fg='white', font=("Arial", 10, "bold"))
+                      bg='#e74c3c', fg='black', font=("Arial", 10, "bold"))
 btn_reset.pack(side=tk.LEFT, padx=5)
 
 btn_toggle = tk.Button(ctrl_frame, text="Ganti Mode", command=toggle_mode,
-                       bg='#9b59b6', fg='white', font=("Arial", 10, "bold"))
+                       bg='#9b59b6', fg='black', font=("Arial", 10, "bold"))
 btn_toggle.pack(side=tk.LEFT, padx=5)
 
 btn_stats = tk.Button(ctrl_frame, text="Lihat Statistik", command=show_statistics,
-                      bg='#1abc9c', fg='white', font=("Arial", 10, "bold"))
+                      bg='#1abc9c', fg='black', font=("Arial", 10, "bold"))
 btn_stats.pack(side=tk.LEFT, padx=5)
 
 mode_label = tk.Label(ctrl_frame, text="Mode: Paralel (multi-server)",
-                      font=("Arial", 10, "bold"), bg='#2c3e50', fg='#f1c40f')
+                      font=("Arial", 10, "bold"), bg="#2462a0", fg="#000000")
 mode_label.pack(side=tk.LEFT, padx=10)
 
-lbl_stats = tk.Label(ctrl_frame, text="", font=("Arial", 10, "bold"), bg='#2c3e50', fg='white')
+lbl_stats = tk.Label(ctrl_frame, text="", font=("Arial", 10, "bold"), bg='#93c9ff', fg='black')
 lbl_stats.pack(side=tk.RIGHT, padx=10)
 
-main_frame = tk.Frame(root, bg='#2c3e50')
+main_frame = tk.Frame(root, bg='#93c9ff')
 main_frame.pack(fill="both", expand=True, padx=10, pady=5)
 
-left_frame = tk.Frame(main_frame, bg='#2c3e50')
+left_frame = tk.Frame(main_frame, bg='#93c9ff')
 left_frame.pack(side=tk.LEFT, fill="both", expand=True)
 
 frame_ci = tk.LabelFrame(left_frame, text="CHECK-IN (Priority Queue)",
-                         font=("Arial", 10, "bold"), bg='#34495e', fg='white')
+                         font=("Arial", 10, "bold"), bg='#93c9ff', fg='black')
 frame_ci.pack(fill="x", pady=3)
 list_checkin = tk.Listbox(frame_ci, height=6, font=("Arial", 9))
 list_checkin.pack(side=tk.LEFT, fill="both", expand=True, padx=5, pady=4)
-server_ci_frame = tk.Frame(frame_ci, bg='#34495e')
+server_ci_frame = tk.Frame(frame_ci, bg='#93c9ff')
 server_ci_frame.pack(side=tk.RIGHT, padx=5)
 status_checkin = []
 for i in range(NUM_CHECKIN_SERVERS):
-    lbl = tk.Label(server_ci_frame, text=f"Server {i+1}: Idle",
+    lbl = tk.Label(server_ci_frame, text=f"Server {i+1}: Tersedia",
                    font=("Arial", 9), bg='#2ecc71', width=24, relief="ridge")
     lbl.pack(pady=2)
     status_checkin.append(lbl)
 
 frame_sec = tk.LabelFrame(left_frame, text="SECURITY (Priority Queue)",
-                          font=("Arial", 10, "bold"), bg='#34495e', fg='white')
+                          font=("Arial", 10, "bold"), bg='#93c9ff', fg='black')
 frame_sec.pack(fill="x", pady=3)
 list_security = tk.Listbox(frame_sec, height=6, font=("Arial", 9))
 list_security.pack(side=tk.LEFT, fill="both", expand=True, padx=5, pady=4)
-server_sec_frame = tk.Frame(frame_sec, bg='#34495e')
+server_sec_frame = tk.Frame(frame_sec, bg='#93c9ff')
 server_sec_frame.pack(side=tk.RIGHT, padx=5)
 status_security = []
 for i in range(NUM_SECURITY_SERVERS):
-    lbl = tk.Label(server_sec_frame, text=f"Server {i+1}: Idle",
+    lbl = tk.Label(server_sec_frame, text=f"Server {i+1}: Tersedia",
                    font=("Arial", 9), bg='#2ecc71', width=24, relief="ridge")
     lbl.pack(pady=2)
     status_security.append(lbl)
 
 frame_bo = tk.LabelFrame(left_frame, text="BOARDING (Priority Queue)",
-                         font=("Arial", 10, "bold"), bg='#34495e', fg='white')
+                         font=("Arial", 10, "bold"), bg='#93c9ff', fg='black')
 frame_bo.pack(fill="x", pady=3)
 list_boarding = tk.Listbox(frame_bo, height=6, font=("Arial", 9))
 list_boarding.pack(side=tk.LEFT, fill="both", expand=True, padx=5, pady=4)
-server_bo_frame = tk.Frame(frame_bo, bg='#34495e')
+server_bo_frame = tk.Frame(frame_bo, bg='#93c9ff')
 server_bo_frame.pack(side=tk.RIGHT, padx=5)
 status_boarding = []
 for i in range(NUM_BOARDING_SERVERS):
-    lbl = tk.Label(server_bo_frame, text=f"Gate {i+1}: Idle",
-                   font=("Arial", 9), bg='#2ecc71', width=24, relief="ridge")
+    lbl = tk.Label(server_bo_frame, text=f"Gate {i+1}: Tersedia",
+                   font=("Arial", 9), bg="#00ff6a", width=24, relief="ridge")
     lbl.pack(pady=2)
     status_boarding.append(lbl)
 
 frame_done = tk.LabelFrame(left_frame, text="PENUMPANG SELESAI",
-                           font=("Arial", 10, "bold"), bg='#34495e', fg='white')
+                           font=("Arial", 10, "bold"), bg='#93c9ff', fg='black')
 frame_done.pack(fill="both", expand=True, pady=3)
 list_completed = tk.Listbox(frame_done, height=6, font=("Arial", 9), bg='#d5f5e3')
 list_completed.pack(fill="both", expand=True, padx=5, pady=4)
 
-right_frame = tk.Frame(main_frame, bg='#2c3e50')
+right_frame = tk.Frame(main_frame, bg='#93c9ff')
 right_frame.pack(side=tk.RIGHT, fill="both", expand=True, padx=5)
 
 log_frame = tk.LabelFrame(right_frame, text="LOG SIMULASI",
-                          font=("Arial", 10, "bold"), bg='#34495e', fg='white')
+                          font=("Arial", 10, "bold"), bg='#93c9ff', fg='black')
 log_frame.pack(fill="both", expand=True)
 
 log_text = tk.Text(log_frame, height=18, width=50, font=("Consolas", 8))
@@ -644,12 +644,12 @@ scroll_log.pack(side=tk.RIGHT, fill=tk.Y)
 log_text.pack(side=tk.LEFT, fill="both", expand=True)
 
 chart_frame = tk.LabelFrame(right_frame, text="GRAFIK PANJANG ANTRIAN",
-                            font=("Arial", 10, "bold"), bg='#34495e', fg='white')
+                            font=("Arial", 10, "bold"), bg='#93c9ff', fg='black')
 chart_frame.pack(fill="both", expand=True, pady=5)
 
 fig, ax = plt.subplots(figsize=(5, 2.5))
-fig.patch.set_facecolor('#34495e')
-ax.set_facecolor('#2c3e50')
+fig.patch.set_facecolor('#93c9ff')
+ax.set_facecolor('#93c9ff')
 ax.tick_params(colors='white')
 ax.xaxis.label.set_color('white')
 ax.yaxis.label.set_color('white')
